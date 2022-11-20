@@ -39,14 +39,16 @@ class UserService {
 // после отправки будет отправляться асинхронная функция в которой параметром будет циферка 
 // мы ее проверяем 
 
-    // async activate(activationLink) {
-    //     const user = await UserModel.findOne({activationLink})
-    //     if (!user) {
-    //         throw ApiError.BadRequest('Неккоректная ссылка активации')
-    //     }
-    //     user.isActivated = true;
-    //     await user.save();
-    // }
+    async activate(activationLink) {
+         const user = await User.findOne({activationLink})
+        if (!user) {
+
+throw new error('Неккоректная ссылка активации')
+          //  throw ApiError.BadRequest('Неккоректная ссылка активации')
+        }
+        user.isActivated = true;
+        await user.save();
+    }
 
     // async login(email, password) {
     //     const user = await UserModel.findOne({email})
