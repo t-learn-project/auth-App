@@ -17,9 +17,8 @@ class UserService {
         const hashPassword = await bcrypt.hash(password, 3);
         const activationLink =await  mailService.getRandomNumber(); 
         const user = await User.create({email, password: hashPassword, activationLink})
+      //C  await mailService.sendActivationMail(email,activationLink);
 
-      //  await mailService.sendActivationMail(email,activationLink);
-        //`${process.env.API_URL}/api/activate/${activationLink}` 
 
 
         const userDto = new UserDto(user); // id, email, isActivated
@@ -35,7 +34,7 @@ class UserService {
       // то будем предоставлять доступ к приложению аналогично с 
        //подтверждением на почте
 
-// сама проверка будет проходить пост запросом 
+// сама проверка будет проходить   activate(activationLink) запросом
 // клиент будет присылать запрос  в котором будет эта циферка с БД
 // после отправки будет отправляться асинхронная функция в которой параметром будет циферка 
 // мы ее проверяем 
