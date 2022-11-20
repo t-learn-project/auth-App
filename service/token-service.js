@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');
+const { where } = require('sequelize');
 const {Token} = require('../models/token-model');
 
 class TokenService {
@@ -35,7 +36,7 @@ class TokenService {
     async saveToken(userId, refreshToken) {
      console.log('userId: '+userId);
       
-        const tokenData = await Token.findOne({tokenuser: userId})
+        const tokenData = await Token.findOne({where:{tokenuser: userId}})
       
         if (tokenData) {
           tokenData.tokenuser=userId
@@ -48,10 +49,10 @@ class TokenService {
         return token;
     }
 
-    // async removeToken(refreshToken) {
-    //     const tokenData = await tokenModel.deleteOne({refreshToken})
-    //     return tokenData;
-    // }
+    async removeToken(refreshToken) {
+        const tokenData = await Token.destroy({where:{refreshToken:refreshToken}})
+        return tokenData;
+    }
 
     // async findToken(refreshToken) {
     //     const tokenData = await tokenModel.findOne({refreshToken})

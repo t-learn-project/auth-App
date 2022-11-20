@@ -28,17 +28,6 @@ class UserService {
     }
 
 
-
-    // далее с клиента я буду получать  в теле эту цифру 
-     // и если она будет совпадать с той что мы тут сгенерировали 
-      // то будем предоставлять доступ к приложению аналогично с 
-       //подтверждением на почте
-
-// сама проверка будет проходить   activate(activationLink) запросом
-// клиент будет присылать запрос  в котором будет эта циферка с БД
-// после отправки будет отправляться асинхронная функция в которой параметром будет циферка 
-// мы ее проверяем 
-
     async activate(activationLink) {
         const user = await User.findOne({activationLink})
         if (!user) {
@@ -67,10 +56,11 @@ class UserService {
         return {...tokens, user: userDto}
     }
 
-    // async logout(refreshToken) {
-    //     const token = await tokenService.removeToken(refreshToken);
-    //     return token;
-    // }
+    
+    async logout(refreshToken) {
+        const token = await tokenService.removeToken(refreshToken);
+        return token;
+    }
 
     // async refresh(refreshToken) {
     //     if (!refreshToken) {
