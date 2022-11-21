@@ -1,7 +1,7 @@
 const nodemailer = require('nodemailer');
 
 class MailService {
-// для работы нужно на gmail аккаунте создавать пороль приложений и подключать 2-х факторную аутентификацию\
+// для работы нужно на gmail аккаунте создавать пороль приложений и подключать 2-х факторную аутентификацию
 //https://support.google.com/accounts/answer/185833?hl=ru
     constructor() {
         this.transporter = nodemailer.createTransport({
@@ -18,17 +18,12 @@ class MailService {
     }
 
 //Возвращает строку так что быть аккуратным или БД подкрутить 
-// потом модно будет добавить время жизни этого кода после времени его будут удалять из БД 
+// потом модно будет добавить время жизни этого кода после времени его будут удалять из БД так как он просто дохнет а в бд остется это тело
 async getRandomNumber(max=1000000) {
   return  Math.floor(Math.random() * max).toString();
 }
 
-
-
-// SMTP_USER= testforprojectsbackend@gmail.com
-// SMTP_PASSWORD=qwe123rty456
-
-    async sendActivationMail(to, registrationNumber) {
+async sendActivationMail(to, registrationNumber) {
                   await this.transporter.sendMail({
             from:"ilasinelko@gmail.com",
             // process.env.SMTP_USER

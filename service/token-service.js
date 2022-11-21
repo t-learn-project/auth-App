@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
-const { where } = require('sequelize');
 const {Token} = require('../models/token-model');
+
 
 class TokenService {
     generateTokens(payload) {
@@ -11,7 +11,6 @@ class TokenService {
             refreshToken
         }
     }
-
     // проверка токена
     validateAccessToken(token) {
         try {
@@ -31,22 +30,15 @@ class TokenService {
         }
     }
 
-
-    //при авторизации через другое устройство с предыдущего будет выбрасывать 
-   
     async saveToken(userId, refreshToken) {
-     console.log('userId: '+userId);
-      
         const tokenData = await Token.findOne({where:{tokenuser: userId}})
-      
-        if (tokenData) {
+            if (tokenData) {
           tokenData.tokenuser=userId
             tokenData.refreshToken = refreshToken;
             return tokenData.save();
         }
         const token = await Token.create({tokenuser:userId,  refreshToken})
-        
-        
+                
         return token;
     }
 
