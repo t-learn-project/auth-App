@@ -1,7 +1,7 @@
 const nodemailer = require("nodemailer");
 
 class MailService {
-  // для работы нужно на gmail аккаунте создавать пороль приложений и подключать 2-х факторную аутентификацию
+  // для работы нужно на gmail аккаунте создавать пaроль приложений и подключать 2-х факторную аутентификацию
   //https://support.google.com/accounts/answer/185833?hl=ru
   constructor() {
     this.transporter = nodemailer.createTransport({

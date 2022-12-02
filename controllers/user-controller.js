@@ -4,8 +4,9 @@ class UserController {
   async login(req, res, next) {
     try {
       const { email } = req.body;
-      const userData = await userService.login(email);
-      return res.json(userData);
+      await userService.login(email);
+      return res.send('успешно');
+
     } catch (e) {
       next(e);
     }
@@ -31,6 +32,8 @@ class UserController {
       next(e);
     }
   }
+
+
   // рефреш токен получаю с клиента
   async refresh(req, res, next) {
     try {
