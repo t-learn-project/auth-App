@@ -4,16 +4,9 @@ const cors = require("cors");
 const sequelize = require("./db");
 const router = require("./router/index");
 const errorMiddleware = require("./middlewares/error-middleware");
-
 const swaggerUI= require('swagger-ui-express')
 const swaggerJsDoc = require("swagger-jsdoc");
-
-
-
 const PORT = process.env.PORT || 5000;
-
-
-
 const options = {
 	definition: {
 		openapi: "3.0.0",
@@ -48,7 +41,7 @@ app.use(errorMiddleware);
 const start = async () => {
   try {
     await sequelize.authenticate();
-    await sequelize.sync();
+   await sequelize.sync();
     app.listen(PORT, () => console.log(`Server started on PORT = ${PORT}`));
   } catch (e) {
     console.log(e);
