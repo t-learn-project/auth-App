@@ -42,7 +42,7 @@ router.post("/refresh", userController.refresh);
  */
 /**
  * @swagger
- * /api/login:
+ * /login:
  *   post:
  *     summary: User authorization
  *     tags: [JWT Auth API]      
@@ -115,7 +115,7 @@ router.post("/refresh", userController.refresh);
  */
 /**
  * @swagger
- * /api/activate:
+ * /activate:
  *   post:
  *     summary: activate user
  *     tags: [JWT Auth API]
@@ -137,7 +137,7 @@ router.post("/refresh", userController.refresh);
  */
 /**
  * @swagger
- * /api/logout:
+ * /logout:
  *   post:
  *     summary: logOut user
  *     tags: [JWT Auth]
@@ -159,7 +159,7 @@ router.post("/refresh", userController.refresh);
  */
 /**
  * @swagger
- * /api/refresh:
+ * /refresh:
  *   post:
  *     summary: refresh user token
  *     tags: [JWT Auth]

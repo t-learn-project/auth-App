@@ -16,7 +16,7 @@ const options = {
 		},
 		servers: [
 			{
-				url: "http://localhost:5000",
+				url: `${process.env.API_URL}`,
 			},
 		],
 	},
@@ -35,7 +35,7 @@ app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(specs));
 
 app.use(cors());
 app.use(express.json());
-app.use("/api", router);
+app.use("", router);
 
 app.use(errorMiddleware);
 const start = async () => {
